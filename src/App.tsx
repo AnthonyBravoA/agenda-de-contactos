@@ -10,6 +10,10 @@ function App() {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [editingContact, setEditingContact] = useState<Contact | null>(null)
+  const [isDarkTheme, setIsDarkTheme] = useState(() => {
+    const savedTheme = sessionStorage.getItem('theme')
+    return savedTheme === 'dark'
+  })
 
   const handleAddContact = (contact: Omit<Contact, 'id'>) => {
     const newContact: Contact = {
@@ -24,25 +28,42 @@ function App() {
   }
 
   const handleEditContact = (contact: Contact) => {
-    console.log('Editar contacto:', contact)
+    setEditingContact(contact)
   }
 
   const handleUpdateContact = (updatedContact: Contact) => {
-    console.log('Actualizar contacto:', updatedContact)
+    setContacts(contacts.map(contact => 
+      contact.id === updatedContact.id ? updatedContact : contact
+    ))
+    setEditingContact(null)
   }
 
-  const filteredContacts = contacts
+  const handleToggleTheme = () => {
+    const newTheme = !isDarkTheme
+    setIsDarkTheme(newTheme)
+    sessionStorage.setItem('theme', newTheme ? 'dark' : 'light')
+  }
+
+  const filteredContacts = contacts.filter(contact => {
+    const searchLower = searchTerm.toLowerCase()
+    return (
+      contact.name.toLowerCase().includes(searchLower) ||
+      contact.lastName.toLowerCase().includes(searchLower) ||
+      contact.email.toLowerCase().includes(searchLower) ||
+      contact.phone.toLowerCase().includes(searchLower)
+    )
+  })
 
   return (
-    <div className="app">
+    <div className={`app ${isDarkTheme ? 'dark-theme' : ''}`}>
       <header className="app-header">
         <h1>Agenda de Contactos</h1>
-        <ThemeToggle />
+        <ThemeToggle isDarkTheme={isDarkTheme} onToggle={handleToggleTheme} />
       </header>
       
       <main className="app-main">
         <section className="form-section">
-          <h2>Agregar Contacto</h2>
+          <h2>{editingContact ? 'Editar Contacto' : 'Agregar Contacto'}</h2>
           <ContactForm 
             onSubmit={handleAddContact}
             editingContact={editingContact}

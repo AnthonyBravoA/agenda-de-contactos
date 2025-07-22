@@ -1,11 +1,13 @@
-function ThemeToggle() {
-  const handleToggle = () => {
-    console.log('Cambiar tema')
-  }
+interface ThemeToggleProps {
+  isDarkTheme: boolean
+  onToggle: () => void
+}
+
+function ThemeToggle({ isDarkTheme, onToggle }: ThemeToggleProps) {
 
   return (
-    <button onClick={handleToggle} className="theme-toggle">
-      Tema
+    <button onClick={onToggle} className="theme-toggle">
+      {isDarkTheme ? '☀️ Claro' : '🌙 Oscuro'}
     </button>
   )
 }

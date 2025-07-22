@@ -2,6 +2,55 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app.dark-theme {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.app.dark-theme .app-header {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+.app.dark-theme .app-header h1 {
+  color: #e0e0e0;
+}
+
+.app.dark-theme .form-section,
+.app.dark-theme .contacts-section {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+.app.dark-theme h2 {
+  color: #e0e0e0;
+}
+
+.app.dark-theme .form-group label {
+  color: #b0b0b0;
+}
+
+.app.dark-theme .form-group input,
+.app.dark-theme .search-input {
+  background-color: #3d3d3d;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.app.dark-theme .form-group input::placeholder,
+.app.dark-theme .search-input::placeholder {
+  color: #888;
+}
+
+.app.dark-theme .contact-item {
+  border-bottom-color: #444;
+}
+
+.app.dark-theme .empty-message {
+  color: #888;
 }
 
 .app-header {
@@ -11,11 +60,13 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
 .app-header h1 {
   margin: 0;
   color: #333;
+  transition: color 0.3s ease;
 }
 
 .app-main {
@@ -32,6 +83,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
+  transition: background-color 0.3s ease;
 }
 
 .contact-form {
@@ -50,6 +102,7 @@
 .form-group label {
   font-weight: 600;
   color: #555;
+  transition: color 0.3s ease;
 }
 
 .form-group input {
@@ -57,6 +110,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .form-actions {
@@ -97,6 +151,7 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
 .search-bar {
@@ -109,6 +164,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .contact-list ul {
@@ -123,10 +179,29 @@
   align-items: center;
   padding: 1rem;
   border-bottom: 1px solid #eee;
+  transition: border-color 0.3s ease;
 }
 
 .contact-item:last-child {
   border-bottom: none;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.app.dark-theme .contact-details {
+  color: #aaa;
 }
 
 .contact-actions {
@@ -165,6 +240,7 @@
   text-align: center;
   color: #999;
   padding: 2rem;
+  transition: color 0.3s ease;
 }
 
 .theme-toggle {
@@ -175,6 +251,7 @@
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 0.9rem;
 }
 
 .theme-toggle:hover {
